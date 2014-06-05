@@ -7,6 +7,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    addressable (2.3.6)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
@@ -14,6 +15,8 @@ GEM
     builder (3.2.2)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
+    crack (0.4.2)
+      safe_yaml (~> 1.0.0)
     daemons (1.1.9)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -58,6 +61,7 @@ GEM
     rspec-mocks (3.0.0)
       rspec-support (~> 3.0.0)
     rspec-support (3.0.0)
+    safe_yaml (1.0.3)
     sinatra (1.4.5)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -70,11 +74,15 @@ GEM
     tilt (1.4.1)
     tzinfo (1.2.1)
       thread_safe (~> 0.1)
+    vcr (2.9.2)
     virtus (1.0.2)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
       descendants_tracker (~> 0.0.3)
       equalizer (~> 0.0.9)
+    webmock (1.18.0)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
 
 PLATFORMS
   ruby
@@ -85,3 +93,5 @@ DEPENDENCIES
   rspec
   sinatra
   thin
+  vcr
+  webmock
