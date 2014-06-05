@@ -8,7 +8,13 @@ class LinkedIn < Grape::API
   version 'v1', using: :header, vendor: 'linked_in'
   format :json
 
+  def self.fetch_response(scope)
+    uri = URI("https://api.linkedin.com/v1/#{scope}?format=json&oauth2_access_token=#{@@token}")
+    res = Net::HTTP.get_response(uri)
+    res.body
+  end
 
+  # request to get access token
   get :callback do
     code = params[:code]
     uri = URI('https://www.linkedin.com/uas/oauth2/accessToken')
@@ -21,12 +27,6 @@ class LinkedIn < Grape::API
     @@token = JSON.parse(res.body.gsub('=>', ':'))['access_token']
 
     redirect '/full_info'
-  end
-
-  def self.fetch_response(scope)
-    uri = URI("https://api.linkedin.com/v1/#{scope}?format=json&oauth2_access_token=#{@@token}")
-    res = Net::HTTP.get_response(uri)
-    res.body
   end
 
   # r_fullprofile
