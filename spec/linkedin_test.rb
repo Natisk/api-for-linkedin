@@ -1,5 +1,6 @@
 require 'rspec'
 require 'rack/test'
+# require '../login.rb'
 require '../linked_in.rb'
 require 'vcr'
 require 'webmock/rspec'
@@ -26,6 +27,12 @@ describe LinkedIn do
 
   describe LinkedIn do
     describe 'with authorization test' do
+
+      it 'should get authorization code' do
+        get '/login'
+        expect last_response.status == 200
+      end
+
       it 'should redirect to /callback' do
         get '/callback'
         expect last_response.status == 302
@@ -56,11 +63,12 @@ describe LinkedIn do
         expect last_response.status == 200
       end
 
-      it 'should return body' do
+      it 'should compare the results' do
         res = stub_request :get, '/callback'
         get '/callback'
         expect last_response == res
       end
+
     end
   end
 
